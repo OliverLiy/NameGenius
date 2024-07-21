@@ -23,12 +23,12 @@ import static com.codeease.name.genius.constant.ModelConstant.*;
  */
 public class AiExecutor {
 
-    public String getMethodNameByOllama(String methodName){
+    public String getMethodNameByOllama(String name,String prompt){
         OkHttpClient client = OkHttpClientSingleton.getInstance();
         ChatRoleModel chatRoleModel = new ChatRoleModel();
         chatRoleModel.setModel(LLAMA);
         chatRoleModel.setStream(false);
-        chatRoleModel.setMessages(buildRoleContentModel(methodName));
+        chatRoleModel.setMessages(buildRoleContentModel(name,prompt));
         String api = ApiSettingState.getInstance().api;
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), JSON.toJSONString(chatRoleModel));
@@ -57,20 +57,20 @@ public class AiExecutor {
 
     }
 
-    public static List<RoleContentModel> buildRoleContentModel(String prompt){
-        List<RoleContentModel> modelList = new ArrayList<>(initRole());
+    public static List<RoleContentModel> buildRoleContentModel(String name,String prompt){
+        List<RoleContentModel> modelList = new ArrayList<>(initRole(prompt));
         RoleContentModel model = new RoleContentModel();
         model.setRole(ModelConstant.USER_ROLE);
-        model.setContent(prompt);
+        model.setContent(name);
         modelList.add(model);
         return modelList;
     }
 
-    private static List<RoleContentModel> initRole() {
+    private static List<RoleContentModel> initRole(String prompt) {
         List<RoleContentModel> initModelList = new ArrayList<>();
         RoleContentModel model = new RoleContentModel();
         model.setRole(ModelConstant.SYSTEM);
-        model.setContent("你是一个Java的方法名翻译机器人，你只需要将接收到的中文翻译为对应的Java属性名称，而不需要其他任何修饰词");
+        model.setContent(prompt);
         initModelList.add(model);
         return initModelList;
     }

@@ -1,6 +1,7 @@
 package com.codeease.name.genius.enmus;
 
 import com.codeease.name.genius.strategy.ClassNameConvert;
+import com.codeease.name.genius.strategy.FieldNameConvert;
 import com.codeease.name.genius.strategy.MethodNameConvert;
 import com.codeease.name.genius.strategy.NameConvertStrategy;
 
@@ -22,7 +23,11 @@ public enum NameTypeEnum {
     /**
      * 类名
      */
-    CLASS("class", ClassNameConvert.class)
+    CLASS("class", ClassNameConvert.class),
+    /**
+     * 属性名
+     */
+    FIELD("field", FieldNameConvert.class)
     ;
     private String typeName;
     private Class<? extends NameConvertStrategy> strategyClass;

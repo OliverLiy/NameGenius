@@ -2,7 +2,6 @@ package com.codeease.name.genius.action;
 
 import com.codeease.name.genius.enmus.NameTypeEnum;
 import com.codeease.name.genius.executor.NamePopupExecutor;
-import com.codeease.name.genius.strategy.NameConvertStrategy;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Editor;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author by: ly
+ * @author by: 神秘的鱼仔
  * @ClassName: GenerateNameAction
  * @Description:
  * @Date: 2024/7/18 下午3:45
